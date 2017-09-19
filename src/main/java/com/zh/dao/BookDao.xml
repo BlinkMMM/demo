@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zh.dao.BookDao">
+
+    <resultMap type="com.zh.entity.Book" id="BookResult">
+        <id column="book_id" jdbcType="INTEGER" property="bookId" />
+        <result column="book_name" jdbcType="VARCHAR" property="bookName" />
+        <result column="book_price" jdbcType="DOUBLE" property="bookPrice" />
+        <result column="book_author" jdbcType="VARCHAR" property="bookAuthor" />
+    </resultMap>
+
+    <select id="findBookByName" parameterType="com.zh.entity.Book" resultMap="BookResult">
+        SELECT *
+        FROM
+        book
+        WHERE
+        book_name = #{bookName}
+    </select>
+
+    <select id="findAllBook" parameterType="com.zh.entity.Book" resultMap="BookResult">
+        SELECT *
+        FROM
+        book
+    </select>
+
+    <insert id="saveBook" parameterType="com.zh.entity.Book" useGeneratedKeys="true" keyProperty="bookId">
+        INSERT INTO book (
+        book_id,
+        boo_name,
+        book_price,
+        book_author
+        )
+        VALUES
+        (
+        #{bookId},
+        #{bookName},
+        #{bookPrice},
+        #{bookAuthor}
+        )
+    </insert>
+
+    <delete id="deleteBookById" parameterType="INTEGER">
+        DELETE FROM book
+        WHERE
+        book_id=#{bookId}
+    </delete>
+
+    <update id="updateBookById" parameterType="com.zh.entity.Book">
+        UPDATE book
+        SET
+        book_name = #{bookName},
+        book_price=#{bookPrice},
+        book_author=#{bookAuthor}
+        WHERE
+        book_id = #{bookId}
+    </update>
+
+
+</mapper>
