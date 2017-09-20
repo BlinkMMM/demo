@@ -179,6 +179,12 @@
                     <webAppConfig>
                         <contextPath>/demo</contextPath>
                     </webAppConfig>
+                    <!--<systemProperties>-->
+                        <!--<systemProperty>-->
+                            <!--<name>org.mortbay.util.URI.charset</name>-->
+                            <!--<value>UTF-8</value>-->
+                        <!--</systemProperty>-->
+                    <!--</systemProperties>-->
                 </configuration>
             </plugin>
             <!-- package跳过测试 -->

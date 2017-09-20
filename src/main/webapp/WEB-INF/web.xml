@@ -38,6 +38,7 @@
     <servlet-name>springDispatcherServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+
   <!--<filter-mapping>-->
     <!--<filter-name>SessionFilter</filter-name>-->
     <!--<url-pattern>/*</url-pattern>-->
