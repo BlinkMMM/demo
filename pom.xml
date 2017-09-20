@@ -158,22 +158,28 @@
             <artifactId>testng</artifactId>
             <version>6.8.17</version>
         </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng-jdk14</artifactId>
-            <version>4.4.7</version>
-            <type>pom</type>
-        </dependency>
-
-
     </dependencies>
     <build>
-        <finalName>decoration</finalName>
+        <finalName>demo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>8.1.16.v20140903</version>
+                <configuration>
+                    <stopPort>9988</stopPort>
+                    <stopKey>foo</stopKey>
+                    <scanIntervalSeconds>5</scanIntervalSeconds>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>8000</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                    <webAppConfig>
+                        <contextPath>/demo</contextPath>
+                    </webAppConfig>
+                </configuration>
             </plugin>
             <!-- package跳过测试 -->
             <plugin>
