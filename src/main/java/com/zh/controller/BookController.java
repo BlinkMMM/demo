@@ -18,13 +18,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class BookController {
     @Autowired
     private BookService bookService;
-    @RequestMapping(value = "/showBooks", method = RequestMethod.POST)
+    @RequestMapping(value = "/showBooks", method = RequestMethod.GET)
     public ModelAndView showAllBooks(){
         ModelAndView mv = bookService.findAllBooks();
         mv.setViewName("/index");
         return mv;
     }
-    @RequestMapping(value = "/addBook", method = RequestMethod.GET)
+    @RequestMapping(value = "/addBook", method = RequestMethod.POST)
     public ModelAndView addBook(){
         Book book = new Book(1,"G X Y",20,"Z H");
         ModelAndView mv = bookService.saveBook(book);

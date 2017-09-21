@@ -19,17 +19,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title></title>
 <link rel="stylesheet" href="css/pintuer.css">
 <link rel="stylesheet" href="css/admin.css">
-<script src="js/jquery.js"></script>
-<script src="js/pintuer.js"></script>
+<script src="js/jquery-3.2.1.js"></script>
+<script type="text/javascript">
+	$("button").click(function(){
+		$("div").toggle();
+	});
+</script>
 </head>
 <body>
-<h2>ssss</h2>
-<form action="book/showBooks" method="post">
-<button type="submit">查询所有书籍</button>
-</form>
-<a href="book/addBook">添加书籍</a>
+<h2>book store</h2>
 <hr>
-    <c:forEach var="i"  items="${bookList}">
+<form action="book/addBook" method="post">
+<label>please input bookName：</label></br>
+<input type="text" class="input w50"  name="bookName" /></br>
+<label>please input bookPrice：</label></br>
+<input type="text" class="input w50"  name="bookPrice"  /></br>
+<label>please input bookAuthor：</label></br>
+<input type="text" class="input w50"  name="bookAuthor"/></br>
+<button type="submit">add book</button>
+</form>
+<hr>
+<a href="book/showBooks" id="find">find all books</a>
+<button >show</button>
+<div id="result">
+hhh
+<table border="1">
+	<c:forEach var="i"  items="${bookList}" >
            <tr>
               <td><c:out value="${i.bookId}"/><p></td>
               <td><c:out value="${i.bookName}"/><p></td>
@@ -37,6 +52,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <td><c:out value="${i.bookAuthor}"/><p></td>
 	       </tr>
 	  </c:forEach>
+</table>
+</div>
+    
 <hr>
 </body>
 </html>
