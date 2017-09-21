@@ -12,6 +12,7 @@
         <result column="book_author" jdbcType="VARCHAR" property="bookAuthor" />
     </resultMap>
 
+
     <select id="findBookByName" parameterType="com.zh.entity.Book" resultMap="BookResult">
         SELECT *
         FROM
@@ -29,7 +30,7 @@
     <insert id="saveBook" parameterType="com.zh.entity.Book" useGeneratedKeys="true" keyProperty="bookId">
         INSERT INTO book (
         book_id,
-        boo_name,
+        book_name,
         book_price,
         book_author
         )
@@ -57,6 +58,4 @@
         WHERE
         book_id = #{bookId}
     </update>
-
-
 </mapper>

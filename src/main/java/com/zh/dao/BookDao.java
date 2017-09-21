@@ -10,7 +10,7 @@ import java.util.List;
 public interface BookDao {
     Book findBookByName(String name);
     List<Book> findAllBook();
-    Book saveBook(Book book);
+    boolean saveBook(Book book);
     Book deleteBookById(int id);
     Book updateBookById(int id);
 }

@@ -1,5 +1,6 @@
 package com.zh.service;
 
+import com.zh.entity.Book;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -7,4 +8,5 @@ import org.springframework.web.servlet.ModelAndView;
  */
 public interface BookService {
     ModelAndView findAllBooks();
+    ModelAndView saveBook(Book book);
 }

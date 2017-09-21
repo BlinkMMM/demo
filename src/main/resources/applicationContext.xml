@@ -35,7 +35,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<!-- 扫描sql配置文件 -->
-		<property name="mapperLocations" value="classpath:com/zh/dao/*.xml"></property>
+		<property name="mapperLocations" value="classpath:*Dao.xml"></property>
 	</bean>
 	
 	<!-- 配置扫描Dao接口包，动态实现Dao接口, 注入到spring容器中 -->
@@ -45,7 +45,7 @@
 		<!-- 给出扫描Dao接口包 -->
 		<property name="basePackage" value="com.zh.dao"></property>
 	</bean>
-	
+
 	<!-- 配置事务管理器 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>

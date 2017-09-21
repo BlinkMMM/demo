@@ -27,10 +27,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <form action="book/showBooks" method="post">
 <button type="submit">查询所有书籍</button>
 </form>
+<a href="book/addBook">添加书籍</a>
 <hr>
     <c:forEach var="i"  items="${bookList}">
            <tr>
-              <td><c:out value="${i.booId}"/><p></td>
+              <td><c:out value="${i.bookId}"/><p></td>
               <td><c:out value="${i.bookName}"/><p></td>
               <td><c:out value="${i.bookPrice}"/><p></td>
               <td><c:out value="${i.bookAuthor}"/><p></td>
