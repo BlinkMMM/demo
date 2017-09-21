@@ -21,9 +21,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" href="css/admin.css">
 <script src="js/jquery-3.2.1.js"></script>
 <script type="text/javascript">
+$(function(){
 	$("button").click(function(){
 		$("div").toggle();
-	});
+	});	
+});
 </script>
 </head>
 <body>
@@ -42,7 +44,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <a href="book/showBooks" id="find">find all books</a>
 <button >show</button>
 <div id="result">
-hhh
 <table border="1">
 	<c:forEach var="i"  items="${bookList}" >
            <tr>
