@@ -15,36 +15,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
-
+<base href="<%=basePath%>"/>
 <title></title>
 <link rel="stylesheet" href="css/pintuer.css">
 <link rel="stylesheet" href="css/admin.css">
 <script src="js/jquery-3.2.1.js"></script>
 <script type="text/javascript">
 $(function(){
-	$("button").click(function(){
-		$("div").toggle();
+	$("#show").click(function(){
+		$("#result").toggle();
 	});	
 });
 </script>
 </head>
 <body>
 <h2>book store</h2>
+<a href="book/home">go home!</a>
 <hr>
+<h3>add a new book !</h3>
 <form action="book/addBook" method="post">
 <label>please input bookName：</label></br>
-<input type="text" class="input w50"  name="bookName" /></br>
+<input type="text" class="input w50"  name="bookName"  required="" /></br>
 <label>please input bookPrice：</label></br>
-<input type="text" class="input w50"  name="bookPrice"  /></br>
+<input type="text" class="input w50"  name="bookPrice"  required="" /></br>
 <label>please input bookAuthor：</label></br>
-<input type="text" class="input w50"  name="bookAuthor"/></br>
+<input type="text" class="input w50"  name="bookAuthor" required="" /></br>
 <button type="submit">add book</button>
 </form>
 <hr>
-<a href="book/showBooks" id="find">find all books</a>
-<button >show</button>
-<div id="result">
-<table border="1">
+<h3>show all books for me !</h3>
+<form action="book/showBooks" method="post">
+	<button type="submit"  >find all books</button>
+	
+</form>
+<!-- <a href="book/showBooks" id="show" >find all books</a> -->
+<button id="show" >show and hide</button>
+<table border="1"  id="result">
 	<c:forEach var="i"  items="${bookList}" >
            <tr>
               <td><c:out value="${i.bookId}"/><p></td>
@@ -54,8 +60,6 @@ $(function(){
 	       </tr>
 	  </c:forEach>
 </table>
-</div>
-    
 <hr>
 </body>
 </html>

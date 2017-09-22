@@ -29,14 +29,12 @@
 
     <insert id="saveBook" parameterType="com.zh.entity.Book" useGeneratedKeys="true" keyProperty="bookId">
         INSERT INTO book (
-        book_id,
         book_name,
         book_price,
         book_author
         )
         VALUES
         (
-        #{bookId},
         #{bookName},
         #{bookPrice},
         #{bookAuthor}

@@ -24,8 +24,8 @@ public class BookDaoTest {
     @Test
     public void testSaveBook(){
         Book book = new Book(3,"三国演义",88,"罗贯中");
-        Book book1 = bookDao.saveBook(book);
-        System.out.println("====="+book1);
+        boolean isOk = bookDao.saveBook(book);
+        System.out.println(isOk);
     }
     @Test
     public void testFindAllBook(){
