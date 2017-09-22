@@ -30,4 +30,9 @@ public class BookServiceImpl implements BookService{
         bookDao.saveBook(book);
         return mv;
     }
+
+    public List<Book> findBooks() {
+        List<Book> bookList = bookDao.findAllBook();
+        return bookList;
+    }
 }

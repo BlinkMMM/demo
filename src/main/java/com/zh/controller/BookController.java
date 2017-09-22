@@ -2,12 +2,15 @@ package com.zh.controller;
 
 import com.zh.entity.Book;
 import com.zh.service.BookService;
+import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * Created by hzheng2 on 17-9-19.
@@ -37,5 +40,11 @@ public class BookController {
     public ModelAndView goHome() {
         ModelAndView mv = new ModelAndView("redirect:/index.jsp");
         return mv;
+    }
+    @RequestMapping(value = "/showBooksWithJson", method = RequestMethod.POST)
+    public JSONArray showBooksWithJson() {
+        List<Book> bookList = bookService.findBooks();
+        JSONArray jsonArray = JSONArray.fromObject(bookList);
+        return jsonArray;
     }
 }

@@ -19,12 +19,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<title></title>
 	<link rel="stylesheet" href="css/book.css">
 	<script src="js/jquery-3.2.1.js"></script>
-	<script type="text/javascript">
+	<script>
 		$(function(){
 			$("#show").click(function(){
 				$("#result").toggle();
 			});	
 		});
+
+		function ajaxTest(){
+			$.ajax({
+				url:"book/showBooksWithJson",
+				type:"post",
+				dataType:'json',
+				success:function(data){
+					var json=eval(data);
+					var con;
+					$.each(json,function(index){
+						var s1=json[index].bookId;
+						var s2=json[index].bookName;
+						var s3=json[index].bookPrice;
+						var s4=json[index].bookAuthor;
+						$("#third").append("<div class='show1'>" + s1 + "   " + s2 + "   " + s3 +"   "+s4+ "</div>");
+					});
+				}
+			});
+		}
+
 	</script>
 </head>
 <body>
@@ -32,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<a href="book/home">go home!</a>
 	<hr>
 	<div id="first">
-	<h3>add a new book !</h3>
+		<h3>add a new book !</h3>
 		<form action="book/addBook" method="post">
 			<label>please input bookName：</label><br>
 			<input type="text" class="input w50"  name="bookName"  required="" /><br>
@@ -45,10 +65,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<hr>
 	<div id = "second">
-	<h3>show all books for me !</h3>
-	<form action="book/showBooks" method="post">
-		<button type="submit"  >find all books</button>
-	</form>
+		<h3>show all books for me !</h3>
+		<form action="book/showBooks" method="post">
+			<button type="submit"  >find all books</button>
+		</form>
 		<button id="show" >show and hide</button>
 		<table border="1"  id="result">
 			<c:forEach var="i"  items="${bookList}" >
@@ -60,6 +80,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</tr>
 		</c:forEach>
 	</table>
+</div>
+<div id="third">
+	<button onclick="ajaxTest()">find all</button>
 </div>
 <hr>
 </body>
