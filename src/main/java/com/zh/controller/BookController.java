@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 /**
@@ -42,9 +43,10 @@ public class BookController {
         return mv;
     }
     @RequestMapping(value = "/showBooksWithJson", method = RequestMethod.POST)
-    public JSONArray showBooksWithJson() {
+    public void showBooksWithJson(PrintWriter printWriter) {
         List<Book> bookList = bookService.findBooks();
         JSONArray jsonArray = JSONArray.fromObject(bookList);
-        return jsonArray;
+        String jsonString = jsonArray.toString();
+        printWriter.write(jsonString);
     }
 }

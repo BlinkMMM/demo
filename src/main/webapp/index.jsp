@@ -33,18 +33,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				dataType:'json',
 				success:function(data){
 					var json=eval(data);
-					var con;
+					var str= "";
 					$.each(json,function(index){
-						var s1=json[index].bookId;
-						var s2=json[index].bookName;
-						var s3=json[index].bookPrice;
-						var s4=json[index].bookAuthor;
-						$("#third").append("<div class='show1'>" + s1 + "   " + s2 + "   " + s3 +"   "+s4+ "</div>");
+						str += "<tr>" +  
+						"<td>" + json[index].bookId+ "</td>" +  
+						"<td>" + json[index].bookName+ "</td>" +  
+						"<td>" + json[index].bookPrice+ "</td>" +  
+						"<td>" + json[index].bookAuthor+ "</td>" +  
+						"</tr>";  
 					});
+					document.getElementById("table").innerHTML=str;
 				}
 			});
 		}
-
+		function fetchTest(){
+			fetch('book/showBooksWithJson',{method:"post"})
+			.then(function(response){
+				console.log(response.headers.get('Content-Type'));
+				console.log(response.headers.get('Date'));
+				return response.json();
+			}).then(function(data){
+				var json=eval(data);
+				var str= "";
+				for (var i =0;i< data.length; i++) {
+					str += "<tr>" +  
+					"<td>" + json[i].bookId+ "</td>" +  
+					"<td>" + json[i].bookName+ "</td>" +  
+					"<td>" +json[i].bookPrice+ "</td>" +  
+					"<td>" + json[i].bookAuthor+ "</td>" +  
+					"</tr>";  
+				}
+				document.getElementById("table1").innerHTML=str;
+			}).catch(function(e){
+				console.log("error");
+			});
+		}
+		function fetchTest2(){
+			fetch('book/showBooksWithJson',{method:"post"})
+			.then(response => response.json())
+			.then(data => console.log(data))
+			.catch(e => console.log("error",e) );
+		}
+		
 	</script>
 </head>
 <body>
@@ -82,7 +112,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</table>
 </div>
 <div id="third">
-	<button onclick="ajaxTest()">find all</button>
+	<table border="1" id="table">
+		<button onclick="ajaxTest()">find all</button>
+	</table>
+	<table border="1" id="table1">
+		<button onclick="fetchTest()">fetch test</button>
+	</table>
+	<button onclick="fetchTest2()">fetch test2</button>
 </div>
 <hr>
 </body>
