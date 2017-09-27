@@ -46,11 +46,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}
 			});
 		}
+		function returnData(){
+			var s = new Object();
+			s.GXY = "1234";
+			var json=JSON.stringify(s);
+			$.ajax({
+				url:"book/getData",
+				contentType: "application/x-www-form-urlencoded",
+				type:"post",
+				//dataType:'json',
+				data:json,
+				success:function(data){
+					console.log(json);
+				},
+				error:function(err){
+					alert(json);
+					alert("err = "+err);
+				}
+			});
+		}
 		function fetchTest(){
 			fetch('book/showBooksWithJson',{method:"post"})
 			.then(function(response){
-				console.log(response.headers.get('Content-Type'));
-				console.log(response.headers.get('Date'));
 				return response.json();
 			}).then(function(data){
 				var json=eval(data);
@@ -119,6 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<button onclick="fetchTest()">fetch test</button>
 	</table>
 	<button onclick="fetchTest2()">fetch test2</button>
+	<button onclick="returnData()">returnData</button>
 </div>
 <hr>
 </body>
